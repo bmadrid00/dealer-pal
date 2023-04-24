@@ -50,6 +50,7 @@ MIDDLEWARE = [
 ]
 
 ALLOWED_HOSTS = [
+    "inventory-api",
     "localhost",
     "project-beta-inventory-api-1",
 ]
