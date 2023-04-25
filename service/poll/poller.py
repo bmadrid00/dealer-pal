@@ -20,7 +20,7 @@ def get_automobiles():
 
 def poll(repeat =True):
     while True:
-        print('Service poller polling for vehicles')
+        print('Service poller polling for automobiles')
         try:
             get_automobiles()
         except Exception as e:

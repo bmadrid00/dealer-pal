@@ -5,7 +5,7 @@ from django.urls import reverse
 class Technician(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    employee_id = models.CharField(max_length=35, unique=True)
+    employee_id = models.IntegerField()
 
 
     def get_api_url(self):
@@ -32,11 +32,11 @@ class Appointment(models.Model):
         return reverse("api_appointment", kwargs={"pk": self.id})
 
     def cancel(self):
-        status = "Cancelled"
+        status = "canceled"
         self.status = status
         self.save()
 
     def finish(self):
-        status = "Finished"
+        status = "finished"
         self.status = status
         self.save()
