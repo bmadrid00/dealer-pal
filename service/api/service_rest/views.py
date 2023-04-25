@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .encoders import AppointmentEncoder, AutomobileVOEncoder, TechnicianEncoder
-from .models import Appointment, AutomobileVO, Technician
+from .encoders import AppointmentEncoder, TechnicianEncoder
+from .models import Appointment, Technician
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
