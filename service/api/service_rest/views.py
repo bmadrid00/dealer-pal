@@ -8,7 +8,7 @@ import json
 
 @require_http_methods(["GET", "POST"])
 def api_technicians(request):
-########################################## Technician LIST endpoint #######################################################
+########################################## Technician LIST endpoint ##########################################################
     if request.method == "GET":
         try:
             technicians = Technician.objects.all()
@@ -18,7 +18,7 @@ def api_technicians(request):
             {"technicians": technicians},
             encoder=TechnicianEncoder,
         )
-########################################## Technician CREATE endpoint #######################################################
+########################################## Technician CREATE endpoint ########################################################
     else:
         content = json.loads(request.body)
         try:
@@ -30,7 +30,7 @@ def api_technicians(request):
 
 @require_http_methods(["DELETE"])
 def api_technician(request, employee_id):
-##################################### Technician DELETE endpoint ################################################
+########################################## Technician DELETE endpoint ########################################################
     count, _ = Technician.objects.filter(employee_id=employee_id).delete()
     if count < 1:
         return JsonResponse({"message": "Technician delete of unknown id"}, status=404)
@@ -39,7 +39,7 @@ def api_technician(request, employee_id):
 
 @require_http_methods(["GET", "POST"])
 def api_appointments(request):
-########################################## Appointment LIST endpoint #######################################################
+########################################## Appointment LIST endpoint #########################################################
     if request.method == "GET":
         try:
             appointments = Appointment.objects.all()
@@ -90,7 +90,7 @@ def api_appointment_cancel(request, pk):
 
 @require_http_methods(["PUT"])
 def api_appointment_finish(request, pk):
-    ########################################## Appointment FINISH endpoint #######################################################
+########################################## Appointment FINISH endpoint #######################################################
     appointment = Appointment.objects.get(id=pk)
     appointment.finish()
     return JsonResponse(
