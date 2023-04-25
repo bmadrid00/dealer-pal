@@ -33,6 +33,7 @@ class SaleEncoder(ModelEncoder):
         "salesperson",
         "customer",
         "price",
+        "id"
     ]
     encoders = {
         "automobile": AutomobileVODetailEncoder(),
