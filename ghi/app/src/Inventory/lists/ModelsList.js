@@ -44,7 +44,7 @@ function ModelList() {
                         return (<tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.manufacturer.name}</td>
-                            <td><img src={model.picture_url} ></img></td>
+                            <td><img alt={model.name} src={model.picture_url} ></img></td>
                         </tr>
                         );
                     })}

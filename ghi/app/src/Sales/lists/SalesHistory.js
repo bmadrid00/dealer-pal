@@ -64,7 +64,7 @@ function SalesHistoryList() {
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>SalesPerson</th>
+                        <th>Salesperson</th>
                         <th>Customer</th>
                         <th>VIN</th>
                         <th>Price</th>
