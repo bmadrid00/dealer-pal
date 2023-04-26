@@ -28,29 +28,29 @@ function SalesList() {
 
     return (
         <>
-        <h1 className="text-left mb-4">Sales</h1>
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th>Salesperson Employee ID</th>
-                    <th>Salesperson Name</th>
-                    <th>Customer</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody>
-                {sales.sort((a, b) => a.id - b.id).map(sale => {
-                    return (<tr key={sale.id}>
-                        <td>{sale.salesperson.employee_id}</td>
-                        <td>{sale.salesperson.first_name}</td>
-                        <td>{sale.customer.first_name}</td>
-                        <td>{sale.price}</td>
-                        <td><button className="btn btn-danger" onClick={handleDeleteButton} id={sale.id} >Delete</button></td>
+            <h1 className="text-left mb-4">Sales</h1>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Salesperson Employee ID</th>
+                        <th>Salesperson Name</th>
+                        <th>Customer</th>
+                        <th>Price</th>
                     </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {sales.sort((a, b) => a.id - b.id).map(sale => {
+                        return (<tr key={sale.id}>
+                            <td>{sale.salesperson.employee_id}</td>
+                            <td>{sale.salesperson.first_name}</td>
+                            <td>{sale.customer.first_name}</td>
+                            <td>{sale.price}</td>
+                            <td><button className="btn btn-danger" onClick={handleDeleteButton} id={sale.id} >Delete</button></td>
+                        </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </>
     )
 }

@@ -41,6 +41,3 @@ class SaleEncoder(ModelEncoder):
         "salesperson": SalespersonEncoder(),
         "customer": CustomerEncoder(),
         }
-
-
-

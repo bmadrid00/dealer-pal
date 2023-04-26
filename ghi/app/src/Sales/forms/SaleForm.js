@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 function SalesForm() {
-const [automobiles, setAutomobiles] = useState([]);
-const [salespersons, setSalesPersons] = useState([]);
-const [customers, setCustomers] = useState([]);
+    const [automobiles, setAutomobiles] = useState([]);
+    const [salespersons, setSalesPersons] = useState([]);
+    const [customers, setCustomers] = useState([]);
 
     const [formData, setFormData] = useState({
         automobile: '',
@@ -78,7 +78,7 @@ const [customers, setCustomers] = useState([]);
             ...formData,
             [inputName]: value
         });
-     }
+    }
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -87,7 +87,7 @@ const [customers, setCustomers] = useState([]);
             ...formData,
             [inputName]: value
         });
-     }
+    }
 
 
     return (
@@ -99,7 +99,7 @@ const [customers, setCustomers] = useState([]);
                         <h1 className="card-title">Record a new sale</h1>
                         <div className="form-floating mb-3">
                             <select onChange={handleChange} required placeholder="Automobile VIN" id="automobile" name="automobile" className="form-select">
-                            <option value=" ">Choose a automobile VIN</option>
+                                <option value=" ">Choose a automobile VIN</option>
                                 {automobiles.map(automobile => (
                                     <option key={automobile.vin} value={automobile.vin}>{automobile.vin}</option>
                                 ))}
@@ -107,18 +107,18 @@ const [customers, setCustomers] = useState([]);
                         </div>
                         <div className="form-floating mb-3">
                             <select onChange={handleChange} required placeholder="Salesperson" id="salesperson" name="salesperson" className="form-select">
-                            <option value="">Choose a salesperson</option>
+                                <option value="">Choose a salesperson</option>
                                 {salespersons.map(salesperson => (
-                                        <option key={salesperson.employee_id} value={salesperson.employee_id}>{salesperson.first_name} {salesperson.last_name}</option>
-                                    ))}
+                                    <option key={salesperson.employee_id} value={salesperson.employee_id}>{salesperson.first_name} {salesperson.last_name}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="form-floating mb-3">
                             <select onChange={handleOptionChange} required placeholder="Customer" id="customer" name="customer" className="form-select">
-                            <option value="">Choose a customer</option>
+                                <option value="">Choose a customer</option>
                                 {customers.map(customer => (
-                                        <option key={customer.id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
-                                    ))}
+                                    <option key={customer.id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
+                                ))}
                             </select>
                         </div>
                         <div className="form-floating mb-3">

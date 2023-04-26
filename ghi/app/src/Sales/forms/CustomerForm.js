@@ -34,13 +34,13 @@ function CustomerForm() {
 
 
     const handleChange = (e) => {
-        const value = e.target.value;            
+        const value = e.target.value;
         const inputName = e.target.name;
         setFormData({
             ...formData,
             [inputName]: value
         });
-     }
+    }
 
 
     return (

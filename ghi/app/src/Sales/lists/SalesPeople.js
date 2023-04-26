@@ -29,30 +29,29 @@ function SalesPersonsList() {
 
     return (
         <>
-        <h1 className="text-left mb-4">Salespeople</h1>
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th>Employee ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {salespersons.sort((a, b) => a.employee_id - b.employee_id).map(salesperson => {
-                    return (<tr key={salesperson.id}>
-                        <td>{salesperson.employee_id}</td>
-                        <td>{salesperson.first_name}</td>
-                        <td>{salesperson.last_name}</td>
-                        <td><button className="btn btn-danger" onClick={handleDeleteButton} id={salesperson.employee_id} >Delete</button></td>
+            <h1 className="text-left mb-4">Salespeople</h1>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                     </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {salespersons.sort((a, b) => a.employee_id - b.employee_id).map(salesperson => {
+                        return (<tr key={salesperson.id}>
+                            <td>{salesperson.employee_id}</td>
+                            <td>{salesperson.first_name}</td>
+                            <td>{salesperson.last_name}</td>
+                            <td><button className="btn btn-danger" onClick={handleDeleteButton} id={salesperson.employee_id} >Delete</button></td>
+                        </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </>
     )
 
 }
 export default SalesPersonsList;
-
