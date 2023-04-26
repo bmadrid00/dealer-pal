@@ -17,16 +17,28 @@ function Nav() {
               <NavLink className="nav-link active" aria-current="page" to="/technicians/">Technicians</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/technicians/add/">Add a Technician</NavLink>
+              <NavLink className="nav-link active" aria-current="page" to="/technicians/new/">Add a Technician</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/appointments/">Service Appointments</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link active" aria-current="page" to="/appointments/create/">Create a Service Appointment</NavLink>
+              <NavLink className="nav-link active" aria-current="page" to="/appointments/new/">Create a Service Appointment</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link active" aria-current="page" to="/appointments/history/">View Service History</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/automobiles/">Automobiles</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/automobiles/new/">Create an Automobile</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/models/">Models</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link active" aria-current="page" to="/models/new/">Create a Model</NavLink>
             </li>
           </ul>
         </div>

@@ -24,11 +24,9 @@ function AppointmentForm() {
         getData();
     }, []);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
 
         const url = `http://localhost:8080/api/appointments/`
-        console.log(formData)
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),

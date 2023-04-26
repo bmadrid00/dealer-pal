@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 
 
 
+
 function ServiceHistory() {
-    const [shoes, setShoes] = useState([]);
+    const [appointments, setAppointments] = useState([]);
+    const [filterValue, setFilterValue] = useState('')
 
     const getData = async () => {
-        const response = await fetch('http://localhost:8080/api/shoes/');
+        const response = await fetch('http://localhost:8080/api/appointments/');
 
         if (response.ok) {
             const data = await response.json();
-            setShoes(data.shoes)
+            setAppointments(data.appointments)
         }
     }
 
@@ -18,36 +20,55 @@ function ServiceHistory() {
         getData()
     }, [])
 
-    const handleDeleteButton = async (b) => {
-        const id = b.target.id
-        const resp = await fetch(`http://localhost:8080/api/shoes/${id}`, { method: "delete" })
 
-        if (resp.ok) {
-            setShoes(shoes.filter(l => (l.id !== parseInt(id))))
-        }
-    }
+    const filteredAppointments = () => {
+        return appointments.filter((app) => {
+            return (
+                app.vin.toLowerCase().includes(filterValue.toLowerCase())
+            );
+        });
+    };
+
+
+    const handleFilterValueChange = (b) => {
+        const { value } = b.target
+        setFilterValue(value)
+        return appointments.filter((appointment) => appointment.vin.toLowerCase().includes(filterValue.toLowerCase()))
+    };
+
 
     return (
+
         <table className="table table-striped">
             <thead>
+                <div className='formcontrol'>
+                    <input className='form-control' onChange={handleFilterValueChange} placeholder='VIN' id="filterBox" value={filterValue} />
+                </div>
                 <tr>
-                    <th>Brand</th>
-                    <th>Model Name</th>
-                    <th>Color</th>
+                    <th>VIN</th>
+                    <th>Customer</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Technician</th>
+                    <th>Reason</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                {shoes.sort((a, b) => a.manufacturer - b.manufacturer).map(shoe => {
-                    return (<tr key={shoe.id}>
-                        <td>{shoe.manufacturer}</td>
-                        <td>{shoe.model_name}</td>
-                        <td>{shoe.color}</td>
-                        <td><button className="btn btn-danger" onClick={handleDeleteButton} id={shoe.id} >Delete</button></td>
+                {filteredAppointments().sort((a, b) => a.date - b.date).map(appointment => {
+                    return (<tr key={appointment.id}>
+                        <td>{appointment.vin}</td>
+                        <td>{appointment.customer}</td>
+                        <td>{appointment.date}</td>
+                        <td>{appointment.time}</td>
+                        <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>
+                        <td>{appointment.reason}</td>
+                        <td>{appointment.status}</td>
                     </tr>
                     );
                 })}
             </tbody>
-        </table>
+        </table >
     )
 }
 
