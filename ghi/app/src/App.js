@@ -9,7 +9,16 @@ import AppointmentList from './service/lists/AppointmentList';
 import AutomobileForm from './inventory/forms/AutomobileForm';
 import AutomobileList from './inventory/lists/AutomobileList';
 import ModelForm from './inventory/forms/ModelForm';
-
+import SalesPersonForm from './Sales/forms/SalesPersonForm';
+import CustomerForm from './Sales/forms/CustomerForm';
+import SalesForm from './Sales/forms/SaleForm';
+import CustomerList from './Sales/lists/CustomerList';
+import SalesList from './Sales/lists/SalesList';
+import SalesPersonsList from './Sales/lists/SalesPeople';
+import SalesHistoryList from './Sales/lists/SalesHistory';
+import ManufacturersList from './Inventory/ManufacturersList';
+import ManufacturerForm from './Inventory/CreateManufacturer';
+import ModelList from './Inventory/ModelsList';
 
 function App() {
   return (
@@ -32,11 +41,29 @@ function App() {
             <Route path="new" element={<AutomobileForm />} />
           </Route>
           <Route path="models">
+            <Route index element={<ModelList />}></Route>
             <Route path="new" element={<ModelForm />} />
           </Route>
+          <Route path="salespeople">
+            <Route path="new" element={<SalesPersonForm />} />
+            <Route index element={<SalesPersonsList />} />
+          </Route>
+          <Route path="customers">
+            <Route path="new" element={<CustomerForm />} />
+            <Route index element={<CustomerList />} />
+          </Route>
+          <Route path="sales">
+            <Route index element={<SalesList />} />
+            <Route path="new" element={<SalesForm />} />
+            <Route path="history" element={<SalesHistoryList />} />
+          </Route>
+          <Route path="manufacturers">
+            <Route index element={<ManufacturersList />} />
+            <Route path="new" element={<ManufacturerForm />} />
+          </Route>
         </Routes>
-      </div>
-    </BrowserRouter>
+      </div >
+    </BrowserRouter >
   );
 }
 
