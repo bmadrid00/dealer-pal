@@ -22,7 +22,7 @@ class SalespersonEncoder(ModelEncoder):
     properties = [
         "first_name",
         "last_name",
-        "employee_id",
+        "employee_id"
     ]
 
 

@@ -50,8 +50,6 @@ const [customers, setCustomers] = useState([]);
 
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
-
         const url = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
             method: "POST",
