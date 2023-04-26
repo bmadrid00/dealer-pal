@@ -6,7 +6,7 @@ class AutomobileVO(models.Model):
 class Salesperson(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    employee_id = models.PositiveIntegerField()
+    employee_id = models.PositiveIntegerField(unique=True)
 
 
 class Customer(models.Model):

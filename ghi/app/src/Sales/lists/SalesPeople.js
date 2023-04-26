@@ -1,54 +1,58 @@
 import { useEffect, useState } from 'react';
 
 
-
-function ShoesList() {
-    const [shoes, setShoes] = useState([]);
+function SalesPersonsList() {
+    const [salespersons, setSalesPersons] = useState([]);
 
     const getData = async () => {
-        const response = await fetch('http://localhost:8080/api/shoes/');
+        const response = await fetch('http://localhost:8090/api/salespeople/');
 
         if (response.ok) {
             const data = await response.json();
-            setShoes(data.shoes)
+            const salespersons = data.salespeople;
+            console.log("salespersons", salespersons)
+            setSalesPersons(salespersons)
         }
     }
-
     useEffect(() => {
         getData()
     }, [])
 
     const handleDeleteButton = async (b) => {
         const id = b.target.id
-        const resp = await fetch(`http://localhost:8080/api/shoes/${id}`, { method: "delete" })
+        const resp = await fetch(`http://localhost:8090/api/salespeople/${id}`, { method: "delete" })
 
         if (resp.ok) {
-            setShoes(shoes.filter(l => (l.id !== parseInt(id))))
+            setSalesPersons(salespersons.filter(l => (l.employee_id !== parseInt(id))))
         }
     }
 
     return (
+        <>
+        <h1 className="text-left mb-4">Salespeople</h1>
         <table className="table table-striped">
             <thead>
                 <tr>
-                    <th>Brand</th>
-                    <th>Model Name</th>
-                    <th>Color</th>
+                    <th>Employee ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                 </tr>
             </thead>
             <tbody>
-                {shoes.sort((a, b) => a.manufacturer - b.manufacturer).map(shoe => {
-                    return (<tr key={shoe.id}>
-                        <td>{shoe.manufacturer}</td>
-                        <td>{shoe.model_name}</td>
-                        <td>{shoe.color}</td>
-                        <td><button className="btn btn-danger" onClick={handleDeleteButton} id={shoe.id} >Delete</button></td>
+                {salespersons.sort((a, b) => a.employee_id - b.employee_id).map(salesperson => {
+                    return (<tr key={salesperson.id}>
+                        <td>{salesperson.employee_id}</td>
+                        <td>{salesperson.first_name}</td>
+                        <td>{salesperson.last_name}</td>
+                        <td><button className="btn btn-danger" onClick={handleDeleteButton} id={salesperson.employee_id} >Delete</button></td>
                     </tr>
                     );
                 })}
             </tbody>
         </table>
+        </>
     )
-}
 
-export default ShoesList;
+}
+export default SalesPersonsList;
+
