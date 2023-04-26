@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
-.formcontrol {
-  padding-top: 20px
+img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.filter-input {
+  max-width: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }

@@ -16,9 +16,9 @@ import CustomerList from './Sales/lists/CustomerList';
 import SalesList from './Sales/lists/SalesList';
 import SalesPersonsList from './Sales/lists/SalesPeople';
 import SalesHistoryList from './Sales/lists/SalesHistory';
-import ManufacturersList from './Inventory/ManufacturersList';
-import ManufacturerForm from './Inventory/CreateManufacturer';
-import ModelList from './Inventory/ModelsList';
+import ManufacturersList from './inventory/lists/ManufacturersList';
+import ManufacturerForm from './inventory/forms/CreateManufacturer';
+import ModelList from './inventory/lists/ModelsList';
 
 function App() {
   return (

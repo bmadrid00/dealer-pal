@@ -72,7 +72,7 @@ const [customers, setCustomers] = useState([]);
 
 
     const handleOptionChange = (e) => {
-        const value = parseInt(e.target.value);            
+        const value = parseInt(e.target.value);
         const inputName = e.target.name;
         setFormData({
             ...formData,
@@ -81,7 +81,7 @@ const [customers, setCustomers] = useState([]);
      }
 
     const handleChange = (e) => {
-        const value = e.target.value;            
+        const value = e.target.value;
         const inputName = e.target.name;
         setFormData({
             ...formData,
@@ -99,7 +99,7 @@ const [customers, setCustomers] = useState([]);
                         <h1 className="card-title">Record a new sale</h1>
                         <div className="form-floating mb-3">
                             <select onChange={handleChange} required placeholder="Automobile VIN" id="automobile" name="automobile" className="form-select">
-                            <option value=" ">Choose a automobile VIN</option> 
+                            <option value=" ">Choose a automobile VIN</option>
                                 {automobiles.map(automobile => (
                                     <option key={automobile.vin} value={automobile.vin}>{automobile.vin}</option>
                                 ))}
@@ -107,7 +107,7 @@ const [customers, setCustomers] = useState([]);
                         </div>
                         <div className="form-floating mb-3">
                             <select onChange={handleChange} required placeholder="Salesperson" id="salesperson" name="salesperson" className="form-select">
-                            <option value="">Choose a salesperson</option> 
+                            <option value="">Choose a salesperson</option>
                                 {salespersons.map(salesperson => (
                                         <option key={salesperson.employee_id} value={salesperson.employee_id}>{salesperson.first_name} {salesperson.last_name}</option>
                                     ))}
@@ -125,7 +125,7 @@ const [customers, setCustomers] = useState([]);
                             <input onChange={handleOptionChange} required placeholder="Price" type="number" id="price" value={formData.price} name="price" className="form-control" />
                             <label htmlFor="price">Price</label>
                         </div>
-                        <button className="btn btn-primary">Create a Customer</button>
+                        <button className="btn btn-primary">Log a New Sale</button>
                     </form >
                 </div >
             </div >

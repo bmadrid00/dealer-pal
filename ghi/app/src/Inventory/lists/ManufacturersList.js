@@ -20,22 +20,22 @@ function ManufacturersList() {
 
     return (
         <>
-        <h1 className="text-left mb-4">Manufacturers</h1>
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {manufacturers.sort((a, b) => a.id - b.id).map(manufacturer => {
-                    return (<tr key={manufacturer.id}>
-                        <td>{manufacturer.name}</td>
+            <h1 className="text-left mb-4">Manufacturers</h1>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
                     </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {manufacturers.sort((a, b) => a.name - b.name).map(manufacturer => {
+                        return (<tr key={manufacturer.id}>
+                            <td>{manufacturer.name}</td>
+                        </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </>
     )
 

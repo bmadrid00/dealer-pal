@@ -32,7 +32,15 @@ function ModelList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {carmodellist.sort((a, b) => a.id - b.id).map(model => {
+                    {carmodellist.sort((a, b) => {
+                        if (a.name < b.name) {
+                            return -1;
+                        }
+                        if (a.name > b.name) {
+                            return 1;
+                        }
+                        return 0;
+                    }).map(model => {
                         return (<tr key={model.id}>
                             <td>{model.name}</td>
                             <td>{model.manufacturer.name}</td>

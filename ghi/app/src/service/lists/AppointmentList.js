@@ -10,23 +10,28 @@ function AppointmentList() {
 
         if (response.ok) {
             const data = await response.json();
-            setAppointments(data.appointments)
-        }
-    }
+            setAppointments(data.appointments);
+        };
+    };
 
     useEffect(() => {
-        getData()
-    }, [])
+        getData();
+    }, []);
 
     const handleCancelButton = async (b) => {
-        const id = b.target.id
-        const status = b.target.status
-        const resp = await fetch(`http://localhost:8080/api/appointments/${id}/cancel/`, { method: "PUT" })
+        const id = b.target.id;
+        const status = b.target.status;
+        const resp = await fetch(`http://localhost:8080/api/appointments/${id}/cancel/`, { method: "PUT" });
+    };
 
-        if (resp.ok) {
-            setAppointments(appointments.filter(l => (l.status !== status )))
-        }
-    }
+    const handleFinishButton = async (b) => {
+        const id = b.target.id;
+        const status = b.target.status;
+        const resp = await fetch(`http://localhost:8080/api/appointments/${id}/finish/`, { method: "PUT" });
+    };
+
+
+
 
     return (
         <table className="table table-striped">
@@ -50,6 +55,7 @@ function AppointmentList() {
                         <td>{appointment.technician.first_name} {appointment.technician.last_name}</td>
                         <td>{appointment.reason}</td>
                         <td><button className="btn btn-danger" onClick={handleCancelButton} id={appointment.id}>Cancel</button></td>
+                        <td><button className="btn btn-success" onClick={handleFinishButton} id={appointment.id}>Finish</button></td>
                     </tr>
                     );
                 })}
