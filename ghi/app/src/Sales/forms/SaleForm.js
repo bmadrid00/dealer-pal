@@ -72,14 +72,6 @@ function SalesForm() {
     }
 
     // update formData when input is changed
-    const handleOptionChange = (e) => {
-        const value = parseInt(e.target.value);
-        const inputName = e.target.name;
-        setFormData({
-            ...formData,
-            [inputName]: value
-        });
-    }
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -115,7 +107,7 @@ function SalesForm() {
                             </select>
                         </div>
                         <div className="form-floating mb-3">
-                            <select onChange={handleOptionChange} required placeholder="Customer" id="customer" name="customer" className="form-select">
+                            <select onChange={handleChange} required placeholder="Customer" id="customer" name="customer" className="form-select">
                                 <option value="">Choose a customer</option>
                                 {customers.map(customer => (
                                     <option key={customer.id} value={customer.id}>{customer.first_name} {customer.last_name}</option>
@@ -123,7 +115,7 @@ function SalesForm() {
                             </select>
                         </div>
                         <div className="form-floating mb-3">
-                            <input onChange={handleOptionChange} required placeholder="Price" type="number" id="price" value={formData.price} name="price" className="form-control" />
+                            <input onChange={handleChange} required placeholder="Price" type="number" id="price" value={formData.price} name="price" className="form-control" />
                             <label htmlFor="price">Price</label>
                         </div>
                         <button className="btn btn-primary">Log a New Sale</button>
