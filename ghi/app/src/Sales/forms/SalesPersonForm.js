@@ -7,11 +7,10 @@ function SalesPersonForm() {
         employee_id: '',
     })
 
+    // post request to API in JSON format
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const url = 'http://localhost:8090/api/salespeople/';
-
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),
@@ -30,15 +29,15 @@ function SalesPersonForm() {
         }
     }
 
-
+    // update formData when input is changed
     const handleChange = (e) => {
-        const value = e.target.value;
+        const value = e.target.value;            
         const inputName = e.target.name;
         setFormData({
             ...formData,
             [inputName]: value
         });
-    }
+     }
 
 
     return (

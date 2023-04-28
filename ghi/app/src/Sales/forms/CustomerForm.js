@@ -8,11 +8,10 @@ function CustomerForm() {
         phone_number: ''
     })
 
+    // post request to API in JSON format
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const url = 'http://localhost:8090/api/customers/';
-
         const fetchConfig = {
             method: "POST",
             body: JSON.stringify(formData),
@@ -32,7 +31,7 @@ function CustomerForm() {
         }
     }
 
-
+    // update formData when input is changed
     const handleChange = (e) => {
         const value = e.target.value;
         const inputName = e.target.name;

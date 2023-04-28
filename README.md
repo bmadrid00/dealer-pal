@@ -7,6 +7,8 @@ Team:
 
 ## Design
 
+We used React for our front-end to easily display our data. 
+
 ## Service microservice
 
 For this microservice I built 3 models. Technician contains the name and a unique employee id field. Appointment model keeps
@@ -21,8 +23,9 @@ For front end I utilized React library for javascript as the use of JSX and reac
 information from my api. All styling was done with bootstrap css.
 
 ## Sales microservice
+
 Dasia:
-I built the sales application that retrieves the automobile data from the inventory microsrvice.
+I built the sales microservice that retrieves the automobile data from the inventory microservice.
 
 To integrate the two microservices I used a poller with a function to get the automobile data.
 The poller uses the RESTful API to retrieve and update the AutoMobileVO.

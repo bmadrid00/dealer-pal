@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
-
-
 function SalesList() {
     const [sales, setSales] = useState([]);
-
+    // retieves sales data from api
     const getData = async () => {
         const response = await fetch('http://localhost:8090/api/sales/');
 
@@ -17,6 +15,7 @@ function SalesList() {
         getData()
     }, [])
 
+    // delete a sale by id
     const handleDeleteButton = async (b) => {
         const id = b.target.id
         const resp = await fetch(`http://localhost:8090/api/sales/${id}`, { method: "delete" })

@@ -12,6 +12,7 @@ function SalesForm() {
         price: ''
     });
 
+    // retrieves data from API endpoints of each foreign key
     const getSalespeople = async () => {
         const url = 'http://localhost:8090/api/salespeople/'
         const response = await fetch(url);
@@ -48,7 +49,7 @@ function SalesForm() {
         getAutomobiles();
     }, []);
 
-
+    // post request to API in JSON format
     const handleSubmit = async (event) => {
         const url = 'http://localhost:8090/api/sales/';
         const fetchConfig = {
@@ -70,7 +71,7 @@ function SalesForm() {
         }
     }
 
-
+    // update formData when input is changed
     const handleOptionChange = (e) => {
         const value = parseInt(e.target.value);
         const inputName = e.target.name;
