@@ -65,7 +65,6 @@ function AutomobileForm() {
                 <div className="shadow p-4 mt-4">
                     <form onSubmit={handleSubmit} id="create-automobile-form">
                         <h1 className="card-title">Add an automobile to inventory</h1>
-
                         <div className="form-floating mb-3">
                             <input onChange={handleChangeName} required placeholder="Color of Vehicle" type="text" id="color" value={formData.color} name="color" className="form-control" />
                             <label htmlFor="color">Color</label>

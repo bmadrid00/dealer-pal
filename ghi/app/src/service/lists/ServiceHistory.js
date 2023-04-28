@@ -7,9 +7,10 @@ function ServiceHistory() {
     const [appointments, setAppointments] = useState([]);
     const [filterValue, setFilterValue] = useState('')
 
+    //getData function calls api to get list of appointments
+
     const getData = async () => {
         const response = await fetch('http://localhost:8080/api/appointments/');
-
         if (response.ok) {
             const data = await response.json();
             setAppointments(data.appointments)
@@ -20,6 +21,8 @@ function ServiceHistory() {
         getData()
     }, [])
 
+    //filteredAppointments is what is used to loop over the data later as this function will allow it to be updated constantly
+    //if a user is typing into the filter results box by vin
 
     const filteredAppointments = () => {
         return appointments.filter((app) => {
@@ -29,11 +32,11 @@ function ServiceHistory() {
         });
     };
 
+    //function to set filterValue state as someone is typing into the vin filtering input
 
     const handleFilterValueChange = (b) => {
         const { value } = b.target
         setFilterValue(value)
-        return appointments.filter((appointment) => appointment.vin.toLowerCase().includes(filterValue.toLowerCase()))
     };
 
 
@@ -55,6 +58,8 @@ function ServiceHistory() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* sorts filtered appointments by date and then maps them returning the jsx seen below for each appointment */}
+
                     {filteredAppointments().sort((a, b) => a.date - b.date).map(appointment => {
                         return (<tr key={appointment.id}>
                             <td>{appointment.vin}</td>

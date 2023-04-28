@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 function AppointmentList() {
     const [appointments, setAppointments] = useState([]);
 
+    //getData function calls api to get list of appointments
+
     const getData = async () => {
         const response = await fetch('http://localhost:8080/api/appointments/');
-
         if (response.ok) {
             const data = await response.json();
             setAppointments(data.appointments);
@@ -18,16 +19,18 @@ function AppointmentList() {
         getData();
     }, []);
 
+    //Function to send PUT to api to set appointment status to cancelled
+
     const handleCancelButton = async (b) => {
         const id = b.target.id;
-        const status = b.target.status;
-        const resp = await fetch(`http://localhost:8080/api/appointments/${id}/cancel/`, { method: "PUT" });
+        await fetch(`http://localhost:8080/api/appointments/${id}/cancel/`, { method: "PUT" });
     };
+
+    //Function to send PUT to api to set appointment status to finished
 
     const handleFinishButton = async (b) => {
         const id = b.target.id;
-        const status = b.target.status;
-        const resp = await fetch(`http://localhost:8080/api/appointments/${id}/finish/`, { method: "PUT" });
+        await fetch(`http://localhost:8080/api/appointments/${id}/finish/`, { method: "PUT" });
     };
 
 

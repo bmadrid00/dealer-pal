@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 function TechnicianList() {
     const [technicians, setTechnicians] = useState([]);
 
+    //getData function retrieves list of technicians from api and sets the state
+
     const getData = async () => {
         const response = await fetch('http://localhost:8080/api/technicians/');
 
@@ -16,6 +18,8 @@ function TechnicianList() {
     useEffect(() => {
         getData()
     }, [])
+
+    //sends delete request to api with technicians id input and then changes state to not include the technician that was just deleted
 
     const handleDeleteButton = async (b) => {
         const id = b.target.id

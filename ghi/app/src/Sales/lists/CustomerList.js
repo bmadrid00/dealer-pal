@@ -28,32 +28,31 @@ function CustomerList() {
 
     return (
         <>
-        <h1 className="text-left mb-4">Customer</h1>
-        <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Phone number</th>
-                    <th>Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                {customers.sort((a, b) => a.id - b.id).map(customer => {
-                    return (<tr key={customer.id}>
-                        <td>{customer.first_name}</td>
-                        <td>{customer.last_name}</td>
-                        <td>{customer.phone_number}</td>
-                        <td>{customer.address}</td>
-                        <td><button className="btn btn-danger" onClick={handleDeleteButton} id={customer.id} >Delete</button></td>
+            <h1 className="text-left mb-4">Customer</h1>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone number</th>
+                        <th>Address</th>
                     </tr>
-                    );
-                })}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {customers.sort((a, b) => a.id - b.id).map(customer => {
+                        return (<tr key={customer.id}>
+                            <td>{customer.first_name}</td>
+                            <td>{customer.last_name}</td>
+                            <td>{customer.phone_number}</td>
+                            <td>{customer.address}</td>
+                            <td><button className="btn btn-danger" onClick={handleDeleteButton} id={customer.id} >Delete</button></td>
+                        </tr>
+                        );
+                    })}
+                </tbody>
+            </table>
         </>
     )
 
 }
 export default CustomerList;
-
