@@ -7,9 +7,10 @@ function TechnicianForm() {
         employee_id: '',
     })
 
+    //turns form data into json and sends it as a post to api on submit of the form
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         const url = 'http://localhost:8080/api/technicians/'
         const fetchConfig = {
             method: "POST",
@@ -28,6 +29,8 @@ function TechnicianForm() {
             });
         }
     }
+
+    //on change for all form inputs this function will take what the user is typing and update the corresponding field
 
     const handleChangeName = (e) => {
         const value = e.target.value;

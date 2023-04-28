@@ -10,6 +10,9 @@ function AppointmentForm() {
         technician: '',
         reason: ''
     })
+
+    //getData function to retrieve data from api for technician foreign key
+
     const getData = async () => {
         const url = 'http://localhost:8080/api/technicians/';
         const response = await fetch(url);
@@ -24,8 +27,9 @@ function AppointmentForm() {
         getData();
     }, []);
 
-    const handleSubmit = async () => {
+    //turns form data into json and sends it as a post to api on submit of the form
 
+    const handleSubmit = async () => {
         const url = `http://localhost:8080/api/appointments/`
         const fetchConfig = {
             method: "POST",
@@ -47,6 +51,8 @@ function AppointmentForm() {
             });
         }
     }
+
+    //on change for all form inputs this function will take what the user is typing and update the corresponding field
 
     const handleChangeName = (e) => {
         const value = e.target.value;
