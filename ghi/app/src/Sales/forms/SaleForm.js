@@ -72,7 +72,6 @@ function SalesForm() {
     }
 
     // update formData when input is changed
-
     const handleChange = (e) => {
         const value = e.target.value;
         const inputName = e.target.name;
