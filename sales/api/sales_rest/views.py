@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from .encoders import CustomerEncoder, SalespersonEncoder, SaleEncoder
 from .models import Customer, Sale, Salesperson, AutomobileVO
 from django.http import JsonResponse
@@ -23,7 +22,7 @@ def api_list_salespeople(request):
         try:
             salespeople = Salesperson.objects.create(**content)
         except Salesperson.DoesNotExist:
-            return JsonResponse({"message": "Unable to create Salesperson"}, status=400)
+            return JsonResponse({"message": "Unable to create Salesperson"}, status=404)
         return JsonResponse(salespeople, encoder=SalespersonEncoder, safe=False)
 
 
@@ -33,7 +32,7 @@ def api_details_salesperson(request, employee_id):
         try:
             salesperson = Salesperson.objects.get(employee_id=employee_id)
         except Salesperson.DoesNotExist:
-            return JsonResponse({"message": "Unable to retrieve Salesperson"}, status=400)
+            return JsonResponse({"message": "Unable to retrieve Salesperson"}, status=404)
         return JsonResponse({"message": "Unable to retrieve salesperson"}, encoder=SalespersonEncoder)
     elif request.method == "DELETE":
         count, _ = Salesperson.objects.filter(employee_id=employee_id).delete()
@@ -46,7 +45,7 @@ def api_details_salesperson(request, employee_id):
             Salesperson.objects.filter(employee_id=employee_id).update(**content)
             salesperson = Salesperson.objects.get(employee_id=employee_id)
         except Salesperson.DoesNotExist:
-            return JsonResponse({"message": "Unable to update Salesperson information"}, status=400)
+            return JsonResponse({"message": "Unable to update Salesperson information"}, status=404)
         return JsonResponse(salesperson, encoder=SalespersonEncoder, safe=False)
     
 
@@ -56,7 +55,7 @@ def api_customers(request):
         try:
             customers = Customer.objects.all()
         except Customer.DoesNotExist:
-            return JsonResponse({"message": "Unable to retrieve customers"}, status=400)
+            return JsonResponse({"message": "Unable to retrieve customers"}, status=404)
         return JsonResponse(
             {"customers": customers},
             encoder=CustomerEncoder
@@ -88,7 +87,7 @@ def api_customer(request, pk):
             Customer.objects.filter(id=pk).update(**content)
             customer = Customer.objects.get(id=pk)
         except Customer.DoesNotExist:
-            return JsonResponse({"message": "Unable to retrieve customer"}, status=400)
+            return JsonResponse({"message": "Unable to retrieve customer"}, status=404)
         return JsonResponse(customer, encoder=CustomerEncoder, safe=False)
 
 @require_http_methods(["GET", "POST"])
@@ -97,7 +96,7 @@ def api_sales(request):
         try:
             sales = Sale.objects.all()
         except Sale.DoesNotExist:
-            return JsonResponse({"message": "Unable to retrieve sales"}, status=400)
+            return JsonResponse({"message": "Unable to retrieve sales"}, status=404)
         return JsonResponse(
             {"sales": sales},
             encoder=SaleEncoder
@@ -131,7 +130,7 @@ def api_sales(request):
         try:
             sales = Sale.objects.create(**content)
         except Sale.DoesNotExist:
-            return JsonResponse({"message": "Unable to create sale"}, status=400)
+            return JsonResponse({"message": "Unable to create sale"}, status=404)
         return JsonResponse(sales, encoder=SaleEncoder, safe=False)
 
 @require_http_methods(["GET", "POST", "DELETE"])

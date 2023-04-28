@@ -39,10 +39,6 @@ function SalesHistoryList() {
     const handleFilterValueChange = (b) => {
         const { value } = b.target
         setFilterValue(value)
-        return salesHistory.filter((sale) => {
-            return (sale.salesperson.id == filterValue)
-                ;
-        })
     };
 
 

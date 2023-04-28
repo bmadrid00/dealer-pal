@@ -7,14 +7,17 @@ Team:
 
 ## Design
 
+We used React for our front-end to easily display our data. 
+
 ## Service microservice
 
 Explain your models and integration with the inventory
 microservice, here.
 
 ## Sales microservice
+
 Dasia:
-I built the sales application that retrieves the automobile data from the inventory microsrvice.
+I built the sales microservice that retrieves the automobile data from the inventory microservice.
 
 To integrate the two microservices I used a poller with a function to get the automobile data. 
 The poller uses the RESTful API to retrieve and update the AutoMobileVO.
@@ -30,7 +33,7 @@ I used 4 different aggregates automobile, salesperson, customer and sale.
         
         The foreign keys in the sales model have the one to many relatioships where one salesperson can have many sales
         and one customer can have many automobiles. This looked nice in the Salesperson List with the dropdown showing 
-        what each sales person sold!
+        what each salesperson sold!
 
 
 

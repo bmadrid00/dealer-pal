@@ -1,71 +1,61 @@
-import React, { useState } from 'react';
+// Import the 'useState' and 'useEffect' hooks from the 'react' library
+import React, { useState, useEffect } from 'react';
 
-function SalesPersonForm() {
-    const [formData, setFormData] = useState({
-        first_name: '',
-        last_name: '',
-        employee_id: '',
-    })
+// Create a functional component called 'TodoList'
+function TodoList() {
+  // Declare a state variable called 'todos' using the 'useState' hook
+  const [todos, setTodos] = useState([]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  // Define a function to fetch the todo items from the API endpoint using the 'fetch' function and update the 'todos' state variable using the 'setTodos' function
+  const getTodos = async () => {
+    // Define the URL for the todo items API endpoint
+    const url = 'http://localhost:8090/api/todos/';
 
-        const url = 'http://localhost:8090/api/salespeople/';
+    // Use the 'fetch' function to make a GET request to the API endpoint
+    const response = await fetch(url);
 
-        const fetchConfig = {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }
+    // If the response is OK, extract the data from the response body and update the 'todos' state variable using the 'setTodos' function
+    if (response.ok) {
+      const data = await response.json();
+      setTodos(data.todos);
+    }
+  };
 
-        const response = await fetch(url, fetchConfig);
-        if (response.ok) {
-            setFormData({
-                first_name: '',
-                last_name: '',
-                employee_id: '',
-            });
-        }
+  // Use the 'useEffect' hook to fetch the todo items from the API endpoint when the component mounts
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  // Define a function to handle the deletion of a todo item using the 'fetch' function and the 'setTodos' function
+  const handleDelete = async (id) => {
+    // Define the URL for the todo item API endpoint with the specific ID to be deleted
+    const url = `http://localhost:8090/api/todos/${id}`;
+
+    // Define the fetch configuration object
+    const fetchConfig = {
+      method: "DELETE",
     }
 
+    // Use the 'fetch' function to make a DELETE request to the API endpoint
+    const response = await fetch(url, fetchConfig);
 
-    const handleChange = (e) => {
-        const value = e.target.value;            
-        const inputName = e.target.name;
-        setFormData({
-            ...formData,
-            [inputName]: value
-        });
-     }
+    // If the response is OK, remove the todo item with the specified ID from the 'todos' state variable using the 'setTodos' function
+    if (response.ok) {
+      setTodos(todos.filter(todo => todo.id !== id));
+    }
+  }
 
-
-    return (
-
-        <div className="row">
-            <div className="offset-3 col-6">
-                <div className="shadow p-4 mt-4">
-                    <form onSubmit={handleSubmit} id="create-salesperson-form">
-                        <h1 className="card-title">Add a salesperson</h1>
-                        <div className="form-floating mb-3">
-                            <input onChange={handleChange} required placeholder="First Name" type="text" id="first_name" value={formData.first_name} name="first_name" className="form-control" />
-                            <label htmlFor="first_name">First Name</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input onChange={handleChange} required placeholder="Last Name" type="text" id="last_name" value={formData.last_name} name="last_name" className="form-control" />
-                            <label htmlFor="last_name">Last Name</label>
-                        </div>
-                        <div className="form-floating mb-3">
-                            <input onChange={handleChange} required placeholder="Employee ID" type="text" id="employee_id" value={formData.employee_id} name="employee_id" className="form-control" />
-                            <label htmlFor="employee_id">Employee ID</label>
-                        </div>
-                        <button className="btn btn-primary">Add Salesperson</button>
-                    </form >
-                </div >
-            </div >
-        </div >
-    );
+  // Render the list of todo items using JSX
+  return (
+    <ul>
+      {todos.map(todo => (
+        <li key={todo.id}>
+          {todo.task} - <button onClick={() => handleDelete(todo.id)}>Delete</button>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-export default SalesPersonForm;
+// Export the 'TodoList' component
+export default TodoList;
