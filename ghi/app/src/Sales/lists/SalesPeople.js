@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 function SalesPersonsList() {
     const [salespersons, setSalesPersons] = useState([]);
-
+    // retrieve salespeople from API
     const getData = async () => {
         const response = await fetch('http://localhost:8090/api/salespeople/');
 
@@ -17,7 +17,7 @@ function SalesPersonsList() {
     useEffect(() => {
         getData()
     }, [])
-
+    // delete salespeople by ID from API endpoint, filters the correct data
     const handleDeleteButton = async (b) => {
         const id = b.target.id
         const resp = await fetch(`http://localhost:8090/api/salespeople/${id}`, { method: "delete" })

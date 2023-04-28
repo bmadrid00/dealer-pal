@@ -7,7 +7,7 @@ function SalesHistoryList() {
     const [salespersons, setSalespersons] = useState([]);
     const [filterValue, setFilterValue] = useState([]);
 
-
+    // retieves salesperson sales from API
     const getData = async () => {
         const response = await fetch('http://localhost:8090/api/sales/');
         const responseSalespeople = await fetch('http://localhost:8090/api/salespeople/')
@@ -23,7 +23,7 @@ function SalesHistoryList() {
         getData()
     }, [])
 
-
+    // filter sales history of a specific sales person by ID
     const sortSalesHistory = () => {
         if (filterValue == '') {
             return salesHistory
@@ -35,7 +35,7 @@ function SalesHistoryList() {
         };
     };
 
-
+    // handles user inputs to retrieve updated changes
     const handleFilterValueChange = (b) => {
         const { value } = b.target
         setFilterValue(value)

@@ -8,6 +8,7 @@ import json
 
 @require_http_methods(["GET", "POST"])
 def api_list_salespeople(request):
+    ### Salespeople List Endpoint ###
     if request.method == "GET":
         try:
             salespeople = Salesperson.objects.all()
@@ -17,6 +18,7 @@ def api_list_salespeople(request):
             {"salespeople": salespeople},
             encoder=SalespersonEncoder
         )
+    ### Create Salesperson Endpoint ###
     else:
         content = json.loads(request.body)
         try:
@@ -28,6 +30,7 @@ def api_list_salespeople(request):
 
 @require_http_methods(["GET", "DELETE", "PUT"])
 def api_details_salesperson(request, employee_id):
+    ### Delete salesperson endpoint ###
     if request.method == "GET":
         try:
             salesperson = Salesperson.objects.get(employee_id=employee_id)
@@ -39,6 +42,7 @@ def api_details_salesperson(request, employee_id):
         if count == 0:
             return JsonResponse({"message": "Unable to delete salesperson"}, status=404)
         return JsonResponse({"deleted": count > 0}, status=200)
+    ### update salesperson endpoint ###
     else:
         content = json.loads(request.body)
         try:
@@ -51,6 +55,7 @@ def api_details_salesperson(request, employee_id):
 
 @require_http_methods(["GET", "POST"])
 def api_customers(request):
+    ### List customer endpoint ###
     if request.method == "GET":
         try:
             customers = Customer.objects.all()
@@ -60,6 +65,7 @@ def api_customers(request):
             {"customers": customers},
             encoder=CustomerEncoder
         )
+    ### Create customer endpoint ###
     else:
         content = json.loads(request.body)
         try:
@@ -70,17 +76,20 @@ def api_customers(request):
     
 @require_http_methods(["GET", "DELETE", "PUT"])
 def api_customer(request, pk):
+    ### Customer list endpoint ###
     if request.method == "GET":
         try:
             customer = Customer.objects.get(id=pk)
         except Customer.DoesNotExist:
             return JsonResponse({"message": "Unable to retrieve customer"}, status=404)
         return JsonResponse(customer, encoder=CustomerEncoder, safe=False)
+    ### Delete customer endpoint ####
     elif request.method == "DELETE":
         count, _ = Customer.objects.filter(id=pk).delete()
         if count == 0:
             return JsonResponse({"message": "Unable to delete customer"}, status=404)
         return JsonResponse({"deleted": count > 0})
+    ### Update customer endpoint ###
     else:
         content = json.loads(request.body)
         try: 
@@ -92,6 +101,7 @@ def api_customer(request, pk):
 
 @require_http_methods(["GET", "POST"])
 def api_sales(request):
+    ### Sales list endpoint ###
     if request.method == "GET":
         try:
             sales = Sale.objects.all()
@@ -101,6 +111,7 @@ def api_sales(request):
             {"sales": sales},
             encoder=SaleEncoder
         )
+    ### Retrieve sale by customer, automobile, salesperson ###
     else:
         content = json.loads(request.body)
         try:
@@ -127,6 +138,7 @@ def api_sales(request):
                 {"message": "Invalid Salesperson ID"},
                 status=400,
             )
+        ### Create new sale endpoint ###
         try:
             sales = Sale.objects.create(**content)
         except Sale.DoesNotExist:
@@ -135,6 +147,7 @@ def api_sales(request):
 
 @require_http_methods(["GET", "POST", "DELETE"])
 def api_sale(request, pk):
+    ### Delete sale endpoint ###
     if request.method == "DELETE":
         count, _ = Sale.objects.filter(id=pk).delete()
         if count == 0:

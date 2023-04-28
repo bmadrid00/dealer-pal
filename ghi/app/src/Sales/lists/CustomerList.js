@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
-
-
 function CustomerList() {
     const [customers, setCustomers] = useState([]);
-
+    // sets inital state of customer to use state and retrieves customer data from api
     const getData = async () => {
         const response = await fetch('http://localhost:8090/api/customers/');
 
@@ -16,7 +14,7 @@ function CustomerList() {
     useEffect(() => {
         getData()
     }, [])
-
+    // deletes customer by id
     const handleDeleteButton = async (b) => {
         const id = b.target.id
         const resp = await fetch(`http://localhost:8090/api/customers/${id}`, { method: "delete" })
